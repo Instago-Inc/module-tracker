@@ -1,0 +1,17 @@
+{
+  "name": "@instago/tracker",
+  "version": "1.0.0",
+  "description": "Module tracker",
+  "main": "index.js",
+  "type": "commonjs",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "instago",
+    "tracker"
+  ],
+  "files": [
+    "index.js",
+    "ReadMe.MD",
+    "LICENSE"
+  ]
+}
