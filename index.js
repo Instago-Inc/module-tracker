@@ -1,6 +1,6 @@
-const browser = require("browser@1.0.0");
-const b64 = require("b64@1.0.0");
-const diff = require("diff@1.0.0");
+const browser = require("browser@latest");
+const b64 = require("b64@latest");
+const diff = require("diff@latest");
 
 function storageKey(url) {
   const safe = String(url).replace(/[^a-z0-9]/gi, "_");

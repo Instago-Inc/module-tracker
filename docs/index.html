@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>tracker Documentation</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 48px 24px;
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: #e2e8f0;
+      }
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 28px;
+      }
+      .intro {
+        font-size: 16px;
+        color: #e2e8f0;
+      }
+      p {
+        margin: 0 0 16px;
+        color: #cbd5f5;
+      }
+      ul {
+        margin: 12px 0 0;
+        padding-left: 18px;
+      }
+      a {
+        color: #93c5fd;
+      }
+      .section {
+        margin-top: 28px;
+      }
+      .muted {
+        color: #94a3b8;
+        font-size: 14px;
+        margin: 6px 0 0;
+      }
+      .code {
+        background: #0b1220;
+        border: 1px solid #1e293b;
+        border-radius: 10px;
+        padding: 16px;
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #e2e8f0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>module/tracker - V8 module</h1>
+      <p class="intro">Track changes across web pages over time and get a clear view of what actually shifted. This module is designed for simple, repeatable monitoring runs without needing to wire up complex scraping logic.</p>
+      <p class="muted">Learn more at <a href="https://instago.ai" target="_blank" rel="noopener">https://instago.ai</a>.</p>
+      <div class="section">
+        <h2>Technical reference</h2>
+        <h1>module/tracker - V8 module</h1>
+<p>Track changes across web pages over time and get a clear view of what actually shifted. This module is designed for simple, repeatable monitoring runs without needing to wire up complex scraping logic.</p>
+<p>Use it as a lightweight watcher that remembers the last snapshot and highlights differences on the next run. Learn more about Instago at https://instago.ai.</p>
+<h2>Technical reference</h2>
+<h3>Exports</h3>
+<ul>
+<li><code>trackPage(url, options?)</code></li>
+<li><code>trackPages(urls, options?)</code></li>
+</ul>
+<h3>Usage</h3>
+<ul>
+<li><code>trackPage(url, options?)</code> -&gt; <code>{ url, firstVisit, snapshot, previous?, delta? }</code></li>
+<li><code>url</code> is required and must be a string.</li>
+<li><code>options.noRefresh</code> (boolean) skips page refresh before capture when true.</li>
+<li>Returns <code>firstVisit: true</code> with <code>delta: null</code> when no prior snapshot exists.</li>
+<li><code>trackPages(urls, options?)</code> -&gt; <code>{ results, changes }</code></li>
+<li><code>urls</code> must be a non-empty array of URL strings.</li>
+<li><code>results</code> contains one entry per URL; errors are captured per-item.</li>
+<li><code>changes</code> is a filtered list of entries with non-empty deltas.</li>
+</ul>
+<h3>Configuration</h3>
+<ul>
+<li><code>env.json</code> has no required or optional keys for this module.</li>
+</ul>
+<h3>Examples</h3>
+<pre class="code"><code>
+const tracker = require(&#x27;tracker@latest&#x27;);
+
+const result = await tracker.trackPage(&#x27;https://example.com&#x27;);
+if (result.firstVisit) {
+  console.log(&#x27;First time snapshot captured.&#x27;);
+} else if (result.delta) {
+  console.log(&#x27;Changes detected:&#x27;, result.delta);
+}
+</code></pre>
+<pre class="code"><code>
+const tracker = require(&#x27;tracker@latest&#x27;);
+
+const { changes } = await tracker.trackPages([
+  &#x27;https://example.com&#x27;,
+  &#x27;https://example.org&#x27;
+]);
+
+if (changes.length) {
+  console.log(&#x27;Pages changed:&#x27;, changes.length);
+}
+</code></pre>
+      </div>
+      
+    </main>
+  </body>
+</html>
